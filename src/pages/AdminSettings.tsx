@@ -11,6 +11,7 @@ import {
   Bell,
   ChevronLeft,
   FolderTree,
+  Layers,
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -28,15 +29,17 @@ import { Category } from "@/types/category";
 import { initialCategories } from "@/data/mockCategories";
 import CategoryTreeItem from "@/components/admin/CategoryTreeItem";
 import CategoryModal from "@/components/admin/CategoryModal";
+import MaterialsSection from "@/components/admin/MaterialsSection";
 
 // Sidebar nav items
 const sidebarItems = [
-  { icon: LayoutGrid, label: "General", active: false },
-  { icon: FolderTree, label: "Categories", active: true },
-  { icon: ShoppingBag, label: "Products", active: false },
-  { icon: Users, label: "Users", active: false },
-  { icon: CreditCard, label: "Payments", active: false },
-  { icon: Bell, label: "Notifications", active: false },
+  { icon: LayoutGrid, label: "General" },
+  { icon: FolderTree, label: "Categories" },
+  { icon: Layers, label: "Materials" },
+  { icon: ShoppingBag, label: "Products" },
+  { icon: Users, label: "Users" },
+  { icon: CreditCard, label: "Payments" },
+  { icon: Bell, label: "Notifications" },
 ];
 
 // Helper: generate unique id
@@ -110,6 +113,7 @@ const disableAll = (cat: Category): Category => ({
 const AdminSettings = () => {
   const navigate = useNavigate();
   const [categories, setCategories] = useState<Category[]>(initialCategories);
+  const [activeSection, setActiveSection] = useState("Categories");
   const [search, setSearch] = useState("");
 
   // Modal state
@@ -223,8 +227,9 @@ const AdminSettings = () => {
           {sidebarItems.map((item) => (
             <button
               key={item.label}
+              onClick={() => setActiveSection(item.label)}
               className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-body transition-colors ${
-                item.active
+                activeSection === item.label
                   ? "bg-primary text-primary-foreground"
                   : "text-muted-foreground hover:bg-secondary hover:text-foreground"
               }`}
@@ -239,54 +244,64 @@ const AdminSettings = () => {
       {/* Main content */}
       <main className="flex-1 p-8 overflow-auto">
         <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <div className="flex items-center justify-between mb-6">
-            <div>
-              <h1 className="font-display text-2xl font-semibold">Categories</h1>
-              <p className="text-sm text-muted-foreground mt-1 font-body">
-                Manage your product categories with unlimited nesting.
-              </p>
-            </div>
-            <Button onClick={handleAddRoot} className="gap-2">
-              <Plus className="h-4 w-4" />
-              Add Root Category
-            </Button>
-          </div>
-
-          {/* Search */}
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search categories..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-
-          {/* Tree */}
-          <div className="border rounded-xl bg-card shadow-subtle p-2">
-            {categories.length === 0 ? (
-              <div className="text-center py-16 text-muted-foreground">
-                <FolderTree className="h-10 w-10 mx-auto mb-3 opacity-40" />
-                <p className="font-body text-sm">No categories yet. Add your first root category to get started.</p>
+          {activeSection === "Materials" ? (
+            <MaterialsSection />
+          ) : activeSection === "Categories" ? (
+            <>
+              {/* Header */}
+              <div className="flex items-center justify-between mb-6">
+                <div>
+                  <h1 className="font-display text-2xl font-semibold">Categories</h1>
+                  <p className="text-sm text-muted-foreground mt-1 font-body">
+                    Manage your product categories with unlimited nesting.
+                  </p>
+                </div>
+                <Button onClick={handleAddRoot} className="gap-2">
+                  <Plus className="h-4 w-4" />
+                  Add Root Category
+                </Button>
               </div>
-            ) : (
-              categories.map((cat) => (
-                <CategoryTreeItem
-                  key={cat.id}
-                  category={cat}
-                  depth={0}
-                  onAddSubcategory={handleAddSubcategory}
-                  onEdit={handleEdit}
-                  onToggleStatus={handleToggleStatus}
-                  onDelete={handleDelete}
-                  searchMatch={searchMatches}
-                  expandedBySearch={searchExpanded}
+
+              {/* Search */}
+              <div className="relative mb-4">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search categories..."
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  className="pl-10"
                 />
-              ))
-            )}
-          </div>
+              </div>
+
+              {/* Tree */}
+              <div className="border rounded-xl bg-card shadow-subtle p-2">
+                {categories.length === 0 ? (
+                  <div className="text-center py-16 text-muted-foreground">
+                    <FolderTree className="h-10 w-10 mx-auto mb-3 opacity-40" />
+                    <p className="font-body text-sm">No categories yet. Add your first root category to get started.</p>
+                  </div>
+                ) : (
+                  categories.map((cat) => (
+                    <CategoryTreeItem
+                      key={cat.id}
+                      category={cat}
+                      depth={0}
+                      onAddSubcategory={handleAddSubcategory}
+                      onEdit={handleEdit}
+                      onToggleStatus={handleToggleStatus}
+                      onDelete={handleDelete}
+                      searchMatch={searchMatches}
+                      expandedBySearch={searchExpanded}
+                    />
+                  ))
+                )}
+              </div>
+            </>
+          ) : (
+            <div className="text-center py-20 text-muted-foreground">
+              <p className="font-body text-sm">This section is coming soon.</p>
+            </div>
+          )}
         </div>
       </main>
 
