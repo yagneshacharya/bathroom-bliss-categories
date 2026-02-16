@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Premium Sanitary Ware Design System */
+
+@layer base {
+  :root {
+    /* Warm, sophisticated neutrals */
+    --background: 40 20% 98%;
+    --foreground: 220 15% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
+
+    /* Charcoal primary for elegance */
+    --primary: 220 10% 20%;
+    --primary-foreground: 40 20% 98%;
+
+    /* Soft warm grey secondary */
+    --secondary: 40 10% 95%;
+    --secondary-foreground: 220 15% 15%;
+
+    /* Muted tones */
+    --muted: 40 10% 93%;
+    --muted-foreground: 220 10% 45%;
+
+    /* Muted gold accent for premium feel */
+    --accent: 42 45% 48%;
+    --accent-foreground: 40 20% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 40 15% 88%;
+    --input: 40 15% 88%;
+    --ring: 42 45% 48%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gold: 42 45% 48%;
+    --gold-light: 42 40% 65%;
+    --charcoal: 220 10% 20%;
+    --warm-white: 40 20% 98%;
+    --soft-grey: 40 10% 93%;
+
+    /* Shadows */
+    --shadow-card: 0 4px 20px -4px hsl(220 10% 20% / 0.08);
+    --shadow-card-hover: 0 12px 40px -8px hsl(220 10% 20% / 0.15);
+    --shadow-subtle: 0 2px 8px -2px hsl(220 10% 20% / 0.05);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 40 20% 95%;
+
+    --card: 220 12% 12%;
+    --card-foreground: 40 20% 95%;
+
+    --popover: 220 12% 12%;
+    --popover-foreground: 40 20% 95%;
+
+    --primary: 40 20% 95%;
+    --primary-foreground: 220 15% 8%;
+
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 40 20% 95%;
+
+    --muted: 220 10% 18%;
+    --muted-foreground: 40 10% 60%;
+
+    --accent: 42 50% 55%;
+    --accent-foreground: 220 15% 8%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 10% 20%;
+    --input: 220 10% 20%;
+    --ring: 42 50% 55%;
+
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: 'Playfair Display', serif;
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+  }
+
+  .text-gold {
+    color: hsl(var(--gold));
+  }
+
+  .bg-gold {
+    background-color: hsl(var(--gold));
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-card-hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+}
