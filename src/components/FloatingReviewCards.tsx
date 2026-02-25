@@ -31,7 +31,7 @@ interface FloatingCardProps {
 const FloatingCard = ({ review, x, duration, delay }: FloatingCardProps) => {
   return (
     <motion.div
-      className="absolute rounded-xl border border-foreground/[0.02] bg-background/10 backdrop-blur-[1px] shadow-subtle px-4 py-3 w-56 pointer-events-none opacity-[0.07]"
+      className="absolute rounded-xl border border-warm-white/[0.08] bg-warm-white/[0.06] backdrop-blur-[2px] shadow-subtle px-4 py-3 w-56 pointer-events-none opacity-[0.18]"
       style={{ left: `${x}%` }}
       initial={{ y: "110vh", opacity: 0 }}
       animate={{ y: "-120vh", opacity: 1 }}
@@ -49,7 +49,7 @@ const FloatingCard = ({ review, x, duration, delay }: FloatingCardProps) => {
       }}
     >
       <div className="flex items-center gap-1.5 mb-1">
-        <span className="text-xs font-body font-medium text-foreground/60">
+        <span className="text-xs font-body font-medium text-warm-white/60">
           {review.name}
         </span>
       </div>
@@ -61,7 +61,7 @@ const FloatingCard = ({ review, x, duration, delay }: FloatingCardProps) => {
           />
         ))}
       </div>
-      <p className="text-[11px] font-body text-muted-foreground/50 leading-relaxed">
+      <p className="text-[11px] font-body text-warm-white/40 leading-relaxed">
         "{review.review}"
       </p>
     </motion.div>
