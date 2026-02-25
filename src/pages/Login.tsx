@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
+import FloatingReviewCards from "@/components/FloatingReviewCards";
 import loginBg from "@/assets/login-bg.jpg";
 
 const Login = () => {
@@ -62,12 +63,13 @@ const Login = () => {
       </div>
 
       {/* Right – Login Form */}
-      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-background">
+      <div className="flex-1 flex items-center justify-center p-6 sm:p-12 bg-background relative overflow-hidden">
+        <FloatingReviewCards />
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6 }}
-          className="w-full max-w-md"
+          className="w-full max-w-md relative z-10"
         >
           {/* Logo / Brand */}
           <Link to="/" className="inline-block mb-10">
