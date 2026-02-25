@@ -31,7 +31,7 @@ interface FloatingCardProps {
 const FloatingCard = ({ review, x, duration, delay }: FloatingCardProps) => {
   return (
     <motion.div
-      className="absolute rounded-xl border border-foreground/[0.06] bg-background/40 backdrop-blur-sm shadow-subtle px-4 py-3 w-56 pointer-events-none"
+      className="absolute rounded-xl border border-foreground/[0.04] bg-background/20 backdrop-blur-[2px] shadow-subtle px-4 py-3 w-56 pointer-events-none opacity-[0.13]"
       style={{ left: `${x}%` }}
       initial={{ y: "110vh", opacity: 0 }}
       animate={{ y: "-120vh", opacity: 1 }}
